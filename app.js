@@ -13,6 +13,7 @@ function agregarAmigo() {
     if (amigo === "") {
         // si no se inserta un nombre y le da agregar nombre, muestra el mensaje
         alert('Por favor, inserte un nombre');
+        return;
     
     } else {
             if (listaAmigos.includes(amigo)) {
@@ -33,6 +34,7 @@ function agregarAmigo() {
             
             // Actualizar la lista en pantalla
             mostrarAmigosEnPantalla(listaAmigos);
+           
         }
     }
 }
@@ -57,5 +59,32 @@ function mostrarAmigosEnPantalla(listaDeAmigos) {
     });
 }
 
+// Funcion que sorteara amigos ingresados
+function sortearAmigo() {
 
-mostrarAmigosEnPantalla(listaAmigos);
+    // Comprobar si la lista esta vacia 
+    if (!Array.isArray(listaAmigos) || listaAmigos.length === 0) {
+        alert('No ha ingresado los nombres de sus amigos, favor hacerlo');
+        return;
+    }
+
+    //Generar el indice de uno de los nombres aleatorio
+    let indice = Math.floor(Math.random()*listaAmigos.length);
+    
+    // Obtener el nombre correspondiente a traves del indice 
+    let nombreRandom = listaAmigos[indice];
+
+    // Acceder al id 'listaAmigos'
+    let listaNombresUI = document.getElementById('listaAmigos');
+    
+    // Limpiar nombres mostrados en pantalla
+    listaNombresUI.innerHTML = '';
+
+    // Mostrar el nombre que resulte ganador
+    let mostrarGanador = document.getElementById('resultado');
+    mostrarGanador.innerHTML = `El amigo secreto sorteado es: ${nombreRandom}`;
+
+}
+
+
+
